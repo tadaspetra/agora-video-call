@@ -1,16 +1,37 @@
-# agora
+# Agora Group Video Calling
 
-A new Flutter project.
+Quickstart for 1-1 video call with stats in Flutter using Agora SDK. Use this guide to quickly start a multiple user group call. 
 
-## Getting Started
+## Prerequisites
 
-This project is a starting point for a Flutter application.
+- '>= Flutter 1.0.0'
+- Agora [Developer Account](https://console.agora.io/)
 
-A few resources to get you started if this is your first Flutter project:
+## Create an Account and Obtain an App ID
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+To build and run the sample application, first obtain an app ID:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Create a developer account at agora.io. Once you finish the sign-up process, you are redirected to the dashboard.
+2. Navigate in the dashboard tree on the left to Projects > Project List.
+3. Copy the app ID that you obtain from the dashboard into a text file. You will use this when you launch the app.
+
+## Update and Run the Sample Application
+
+1. Open the main.dart file and replace the app ID and token.
+
+```const appId = "";
+const token = "";
+```
+
+2. Install all the dependencies
+
+```flutter pub get```
+
+3. Once the build is complete, use the below given command to run the app. 
+
+```flutter run```
+
+## Resources
+
+- You can find the complete API Documentation over [here](https://docs.agora.io/en/Video/API%20Reference/flutter/index.html).
+- You can refer this [blog](https://medium.com/@tadaspetra/building-a-flutter-video-call-app-with-in-call-stats-bfb1e02abc0e) where I will walk you through the process of building a group video calling application.
