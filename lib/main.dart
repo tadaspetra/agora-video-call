@@ -9,7 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 const appId = "7f4e31eb26824a8189d2dae24b597a86";
 const token =
-    "0067f4e31eb26824a8189d2dae24b597a86IAAWM/gM74pldx+JEDPYmF8xa6ETbTw2b7xtGfXIfMEwItzDPrsAAAAAEACZqwdI/iH2XwEAAQD+IfZf";
+    "0067f4e31eb26824a8189d2dae24b597a86IACYJb6hgJzJSZwB2Z9faKF8P85iEMpg1n+Cvx4qeANpYtzDPrsAAAAAEAALtir+tmOMYAEAAQC2Y4xg";
 
 void main() => runApp(MyApp());
 
@@ -20,8 +20,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _localUserJoined = false;
+  bool _showStats = false;
   int _remoteUid;
-  bool _switch = false;
+  RtcStats _stats = RtcStats();
 
   @override
   void initState() {
@@ -56,10 +57,17 @@ class _MyAppState extends State<MyApp> {
           _remoteUid = null;
         });
       },
+      rtcStats: (stats) {
+        //updates every two seconds
+        if (_showStats) {
+          _stats = stats;
+          setState(() {});
+        }
+      },
     ));
     // enable video
     await engine.enableVideo();
-    // join a video
+
     await engine.joinChannel(token, 'firstchannel', null, 0);
   }
 
@@ -88,7 +96,42 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
+        floatingActionButton: _showStats
+            ? _statsView()
+            : ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _showStats = true;
+                  });
+                },
+                child: Text("Show Stats"),
+              ),
       ),
+    );
+  }
+
+  Widget _statsView() {
+    return Container(
+      padding: EdgeInsets.all(20),
+      color: Colors.white,
+      child: _stats.cpuAppUsage == null
+          ? CircularProgressIndicator()
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("CPU Usage: " + _stats.cpuAppUsage.toString()),
+                Text("Duration (seconds): " + _stats.totalDuration.toString()),
+                Text("People on call: " + _stats.users.toString()),
+                ElevatedButton(
+                  onPressed: () {
+                    _showStats = false;
+                    _stats.cpuAppUsage = null;
+                    setState(() {});
+                  },
+                  child: Text("Close"),
+                )
+              ],
+            ),
     );
   }
 
@@ -116,4 +159,3 @@ class _MyAppState extends State<MyApp> {
     }
   }
 }
-
