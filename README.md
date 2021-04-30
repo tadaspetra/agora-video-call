@@ -19,9 +19,10 @@ To build and run the sample application, first obtain an app ID:
 
 1. Open the main.dart file and replace the app ID and token.
 
-```const appId = "";
-const token = "";
-```
+```const appId = "";```
+
+```const token = "";```
+
 
 2. Install all the dependencies
 
