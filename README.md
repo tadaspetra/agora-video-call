@@ -1,4 +1,4 @@
-# Agora Group Video Calling
+# Agora 1-1 Video Call with in-call Stats
 
 Quickstart for 1-1 video call with stats in Flutter using Agora SDK. Use this guide to quickly start a multiple user group call. 
 
